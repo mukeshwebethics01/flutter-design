@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: MyTable(),
+        ),
+      ),
+    );
+  }
+}
+
+class MyTable extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        buildDaySection(
+          context,
+          'Monday, 22 August',
+          '₹ 2,400.00',
+          [
+            buildTableRow('Fruits', 'Fruits', 'Cash', '₹ 450.00'),
+            buildTableRow('Online\nShopping', 'Pillow With Cover', 'Cash', '₹ 1950.00'),
+          ],
+        ),
+        SizedBox(height: 16),
+        buildDaySection(
+          context,
+          'Tuesday, 23 August',
+          '₹ 1,200.00',
+          [
+            buildTableRow('Vegetables', 'Vegetables', 'Cash', '₹ 300.00'),
+            buildTableRow('Books', 'Novel', 'Credit Card', '₹ 900.00'),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildDaySection(BuildContext context, String date, String total, List<TableRow> rows) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                date,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                total,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+              ),
+            ],
+          ),
+        ),
+        Divider(),
+        Table(
+          columnWidths: {
+            0: FixedColumnWidth(120),
+            1: FlexColumnWidth(),
+            2: FixedColumnWidth(100),
+          },
+          border: TableBorder(
+            horizontalInside: BorderSide(width: 1, color: Colors.grey[300]!),
+          ),
+          children: rows,
+        ),
+      ],
+    );
+  }
+
+  TableRow buildTableRow(String title, String subtitle, String paymentMethod, String amount) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                subtitle,
+                style: TextStyle(fontSize: 16),
+              ),
+              Text(
+                paymentMethod,
+                style: TextStyle(color: Colors.grey, fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            amount,
+            style: TextStyle(color: Colors.red, fontSize: 16),
+          ),
+        ),
+      ],
+    );
+  }
+}

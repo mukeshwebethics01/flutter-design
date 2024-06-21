@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Footer Navigation Example'),
+      ),
+      body: Center(
+        child: Text('Main Content Here'),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                // Handle navigation to Home
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.bar_chart),
+              onPressed: () {
+                // Handle navigation to Analytics
+              },
+            ),
+            SizedBox(width: 40), // The middle space for the FAB
+            IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {
+                // Handle navigation to Edit
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {
+                // Handle navigation to Profile
+              },
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle FAB press
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.purple,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+
+
+    // for gradient color style 
+
+      floatingActionButton: Container(
+        width: 56.0,
+        height: 56.0,
+        child: RawMaterialButton(
+          onPressed: () {},
+          shape: CircleBorder(),
+          child: Icon(Icons.add, color: Colors.white),
+        ),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            colors: [Color(0xFFAA56B9), Color(0xFF7433E5)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+      ),
