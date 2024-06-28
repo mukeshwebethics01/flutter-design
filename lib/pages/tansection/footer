@@ -90,3 +90,191 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+
+// table style 
+
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 100,
+            backgroundColor: Colors.white,
+            bottom: const TabBar(
+              tabs: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Tab(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Income",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xffA19F9F)),
+                        ),
+                        Text(
+                          "₹90,000",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xffA19F9F),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Tab(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Expenses",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xffA19F9F)),
+                        ),
+                        Text(
+                          "₹ 82,632.00",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xffA19F9F),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            title: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.black,
+                      size: 15,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Aug 2022",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: Colors.black,
+                      size: 14,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    DropdownMenuExample(),
+                  ],
+                )
+              ],
+            ),
+          ),
+          body: Container(
+            color: Colors.white,
+            child: TabBarView(
+              children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: Image.asset("assets/images/datagraph.png"),
+                    ),
+                    const StatusData()
+                  ],
+                ),
+                const Icon(Icons.sports_gymnastics_outlined),
+              ],
+            ),
+          ),
+        ),
+
+
+
+// second data-table
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              buildRow('58%', "Other's", '₹ 47,890.00', Colors.blue),
+              buildRow('9.9%', 'Diesel', '₹ 17,100.00', Colors.purple),
+              buildRow('0.7%', 'Vedik', '₹ 8,692.00', Colors.pink),
+              buildRow('0.2%', 'Car Maintenance', '₹ 200.00', Colors.deepPurpleAccent),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildRow(String percentage, String label, String amount, Color color) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Text(
+              percentage,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          SizedBox(width: 16.0),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ),
+          Text(
+            amount,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

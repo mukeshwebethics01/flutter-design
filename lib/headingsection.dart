@@ -10,6 +10,7 @@ class HeadingSection extends StatelessWidget {
   final String headingone;
   final String headingtwo;
   @override
+
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),

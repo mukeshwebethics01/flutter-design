@@ -1,8 +1,11 @@
 import 'dart:ui_web';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobiledesign/DateMonth.dart';
+import 'package:mobiledesign/Dropdown.dart';
 
 const List<String> list = <String>['Monthly', 'Two', 'Three', 'Four'];
 
@@ -27,7 +30,7 @@ class TanSection extends StatelessWidget {
         ),
         bottomNavigationBar: BottomAppBar(
           shape: const CircularNotchedRectangle(),
-          notchMargin: 8.0,
+          notchMargin: 5.0,
           color: Colors.white,
           shadowColor: Colors.black,
           child: Row(
@@ -37,12 +40,14 @@ class TanSection extends StatelessWidget {
               IconButton(
                 icon: Image.asset("assets/images/home-f 1-hover.png"),
                 onPressed: () {
+                  Navigator.pushNamed(context, "/tansection");
                   // Handle navigation to Home
                 },
               ),
               IconButton(
                 icon: Image.asset("assets/images/bar-chart 1-hover.png"),
                 onPressed: () {
+                  Navigator.pushNamed(context, "/status");
                   // Handle navigation to Analytics
                 },
               ),
@@ -62,18 +67,13 @@ class TanSection extends StatelessWidget {
             ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {},
-        //   child: Icon(Icons.add),
-        //   backgroundColor: const Color.fromARGB(255, 170, 86, 185),
-        //   foregroundColor: Colors.white,
-        //   shape: const CircleBorder(),
-        // ),
         floatingActionButton: Container(
           width: 75.0,
           height: 75.0,
           child: RawMaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/status");
+            },
             shape: CircleBorder(),
             child: Icon(
               Icons.add,
@@ -111,46 +111,7 @@ class BalanceCard extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 14,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Aug 2022",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.white,
-                        size: 14,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      DropdownMenuExample(),
-                    ],
-                  )
-                ],
-              ),
-            ],
+            children: [Datemonth()],
           ),
           SizedBox(
             height: 20,
@@ -214,55 +175,56 @@ class BalanceCard extends StatelessWidget {
   }
 }
 
-class DropdownMenuExample extends StatefulWidget {
-  const DropdownMenuExample({super.key});
+// class DropdownMenuExample extends StatefulWidget {
+//   const DropdownMenuExample({super.key});
 
-  @override
-  State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
-}
+//   @override
+//   State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
+// }
 
-class _DropdownMenuExampleState extends State<DropdownMenuExample> {
-  String dropdownValue = list.first;
+// class _DropdownMenuExampleState extends State<DropdownMenuExample> {
+//   String dropdownValue = list.first;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
-      color: Colors.white,
-      child: DropdownButton<String>(
-        value: dropdownValue,
-        icon: const Icon(
-          Icons.keyboard_arrow_down_rounded,
-          color: Colors.black,
-        ),
-        iconSize: 24, // Adjust the icon size if needed
-        elevation: 16,
-        dropdownColor: Colors.white,
-        style: const TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w600, fontSize: 14),
-        underline: Container(
-          height: 2,
-          color: Colors.transparent,
-        ),
-        onChanged: (String? value) {
-          setState(() {
-            dropdownValue = value!;
-          });
-        },
-        items: list.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                  10, 0, 10, 0), // Adjust the vertical padding as needed
-              child: Text(value),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+//       color: Colors.white,
+//       child: DropdownButton<String>(
+//         borderRadius: BorderRadius.circular(10),
+//         value: dropdownValue,
+//         icon: const Icon(
+//           Icons.keyboard_arrow_down_rounded,
+//           color: Colors.black,
+//         ),
+//         iconSize: 24, // Adjust the icon size if needed
+//         elevation: 16,
+//         dropdownColor: Colors.white,
+//         style: const TextStyle(
+//             color: Colors.black, fontWeight: FontWeight.w600, fontSize: 14),
+//         underline: Container(
+//           height: 2,
+//           color: Colors.transparent,
+//         ),
+//         onChanged: (String? value) {
+//           setState(() {
+//             dropdownValue = value!;
+//           });
+//         },
+//         items: list.map<DropdownMenuItem<String>>((String value) {
+//           return DropdownMenuItem<String>(
+//             value: value,
+//             child: Padding(
+//               padding: const EdgeInsets.fromLTRB(
+//                   10, 0, 10, 0), // Adjust the vertical padding as needed
+//               child: Text(value),
+//             ),
+//           );
+//         }).toList(),
+//       ),
+//     );
+//   }
+// }
 
 // .....table starting from here..... //
 
@@ -408,3 +370,8 @@ class MyTable extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
